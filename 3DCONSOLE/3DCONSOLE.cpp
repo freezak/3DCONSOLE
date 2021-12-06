@@ -29,64 +29,9 @@ int blue = 0;
 
 COLORREF getNextColour(float val)
 {
-	/*
-	switch (state) {
-	case 0:
-	  green++;
-	  if (green == 186) {
-		green = 100;
-		state = 1;
-	  }
-	  break;
-	case 1:
-	  red--;
-	  if (red == 255) {
-		red = 0;
-		state = 2;
-	  }
-	  break;
-	case 2:
-	  blue++;
-	  if (blue == 32) {
-		blue = 31;
-		state = 3;
-	  }
-	  break;
-	case 3:
-	  green--;
-	  if (green == 255) {
-		green = 0;
-		state = 4;
-	  }
-	  break;
-	case 4:
-	  red++;
-	  if (red == 32) {
-		red = 31;
-		state = 5;
-	  }
-	  break;
-	case 5:
-	  blue--;
-	  if (blue == 255) {
-		blue = 0;
-		state = 0;
-	  }
-	  break;
-	}
-	*/
-
-	//red = cos(val) * .5f + .5f;
-	//green = cos(val - 2.f * M_PI / 3.f) * .5f + .5f;
-	//blue = cos(val - 4.f * M_PI / 3.f) * .5f + .5f;
-
 	red = sin(0.001f * val + 0) * 127 + 128;
 	green = sin(0.001f * val + 2) * 127 + 128;
 	blue = sin(0.001f * val + 4) * 127 + 128;
-
-	//red *= 255.0f;
-	//green *= 255.0f;
-	//blue *= 255.0f;
 
 	return RGB(red, green, blue);
 }
@@ -128,7 +73,7 @@ int main()
 
 void cube(float rotx, float roty, float rotz, HPEN pen)
 {
-	int newx[8]; //Jakas czarna magia (znalazle te wzory w internecie i napisalem ten skrypt) sam do konca nie ogarniam tego jak to dziala, ale wazne ze dziala
+	int newx[8];
 	int newy[8];
 	int i, ii, loopi;
 	float xt, yt, zt, x, y, z, sinax, cosax, sinay, cosay, sinaz, cosaz;
@@ -144,11 +89,7 @@ void cube(float rotx, float roty, float rotz, HPEN pen)
 
 	xpos = xpos + 0.0;
 	ypos = ypos + 0.0;
-	zpos = zpos + 0.0;
-
-	//rotx=rotx+.1;             
-	//roty=roty+.1;             
-	//rotz=rotz+0;             
+	zpos = zpos + 0.0;        
 
 
 	sinax = sin(rotx);
@@ -160,7 +101,7 @@ void cube(float rotx, float roty, float rotz, HPEN pen)
 	sinaz = sin(rotz);
 	cosaz = cos(rotz);
 
-	for (i = 0; i < 8; i++)  //Przeksztalcam pozycje 3D w 2D (Robie projekcje rogow szeszcianu na ekran)
+	for (i = 0; i < 8; i++)
 	{
 		x = aa[i];
 		y = bb[i];
@@ -189,7 +130,7 @@ void cube(float rotx, float roty, float rotz, HPEN pen)
 		newy[i] = (y * 64 / z) + OFFSETY;
 	}
 
-	for (ii = 0; ii < 12; ii++)  //Rysujemy 12 linij (verteksy szeszciana)
+	for (ii = 0; ii < 12; ii++)
 	{
 		vertex = ff[ii] - 1;
 		sx = newx[vertex];
